@@ -1,22 +1,11 @@
-import { useState, useMemo } from 'react'
-import type { LeasingAnlageInputs, LeasingAnlageResult } from '@/shared/types'
+import { useMemo } from 'react'
+import type { LeasingAnlageResult } from '@/shared/types'
 import { leasingExcessKm, compoundGrowthSchedule } from '@/shared/utils/calculations'
 import { formatEuro } from '@/shared/utils/format'
-
-const DEFAULTS: LeasingAnlageInputs = {
-  vehiclePrice: 40000,
-  monthlyRate: 350,
-  termMonths: 36,
-  sonderzahlung: 3000,
-  annualMileage: 15000,
-  mileageLimit: 10000,
-  excessKmCost: 0.15,
-  investmentAmount: 40000,
-  annualReturnRate: 3,
-}
+import { useCalculator } from '@/state/CalculatorContext'
 
 export default function LeasingAnlageModule() {
-  const [inputs, setInputs] = useState<LeasingAnlageInputs>(DEFAULTS)
+  const { state: { leasingAnlage: inputs }, updateLeasingAnlage } = useCalculator()
 
   const result = useMemo((): LeasingAnlageResult => {
     const totalWithoutSonderzahlung = inputs.monthlyRate * inputs.termMonths
@@ -43,8 +32,7 @@ export default function LeasingAnlageModule() {
     }
   }, [inputs])
 
-  const update = (key: keyof LeasingAnlageInputs, value: number) =>
-    setInputs((prev) => ({ ...prev, [key]: value }))
+  const update = (key: string, value: number) => updateLeasingAnlage({ [key]: value })
 
   const years = inputs.termMonths / 12
 

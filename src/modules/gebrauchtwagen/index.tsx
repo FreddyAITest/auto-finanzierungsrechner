@@ -1,17 +1,11 @@
-import { useState, useMemo } from 'react'
-import type { GebrauchtwagenInputs, GebrauchtwagenResult } from '@/shared/types'
+import { useMemo } from 'react'
+import type { GebrauchtwagenResult } from '@/shared/types'
 import { depreciationSchedule } from '@/shared/utils/calculations'
 import { formatEuro } from '@/shared/utils/format'
-
-const DEFAULTS: GebrauchtwagenInputs = {
-  purchasePrice: 18000,
-  currentAge: 3,
-  annualDepreciationRate: 8,
-  years: 5,
-}
+import { useCalculator } from '@/state/CalculatorContext'
 
 export default function GebrauchtwagenModule() {
-  const [inputs, setInputs] = useState<GebrauchtwagenInputs>(DEFAULTS)
+  const { state: { gebrauchtwagen: inputs }, updateGebrauchtwagen } = useCalculator()
 
   const result = useMemo((): GebrauchtwagenResult => {
     const amortizationSchedule = depreciationSchedule(
@@ -24,8 +18,7 @@ export default function GebrauchtwagenModule() {
     return { amortizationSchedule, totalDepreciation, finalValue }
   }, [inputs])
 
-  const update = (key: keyof GebrauchtwagenInputs, value: number) =>
-    setInputs((prev) => ({ ...prev, [key]: value }))
+  const update = (key: string, value: number) => updateGebrauchtwagen({ [key]: value })
 
   return (
     <div>

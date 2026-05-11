@@ -1,16 +1,11 @@
-import { useState, useMemo } from 'react'
-import type { BarkaufInputs, BarkaufResult } from '@/shared/types'
+import { useMemo } from 'react'
+import type { BarkaufResult } from '@/shared/types'
 import { depreciationSchedule } from '@/shared/utils/calculations'
 import { formatEuro } from '@/shared/utils/format'
-
-const DEFAULTS: BarkaufInputs = {
-  purchasePrice: 40000,
-  annualDepreciationRate: 15,
-  years: 5,
-}
+import { useCalculator } from '@/state/CalculatorContext'
 
 export default function BarkaufModule() {
-  const [inputs, setInputs] = useState<BarkaufInputs>(DEFAULTS)
+  const { state: { barkauf: inputs }, updateBarkauf } = useCalculator()
 
   const result = useMemo((): BarkaufResult => {
     const amortizationSchedule = depreciationSchedule(
@@ -23,8 +18,7 @@ export default function BarkaufModule() {
     return { amortizationSchedule, totalDepreciation, finalValue }
   }, [inputs])
 
-  const update = (key: keyof BarkaufInputs, value: number) =>
-    setInputs((prev) => ({ ...prev, [key]: value }))
+  const update = (key: string, value: number) => updateBarkauf({ [key]: value })
 
   return (
     <div>
