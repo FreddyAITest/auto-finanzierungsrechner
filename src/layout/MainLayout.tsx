@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
 
 const NAV_ITEMS = [
+  { to: '/vergleich', label: 'Vergleich' },
   { to: '/barkauf', label: 'Barkauf' },
   { to: '/leasing', label: 'Leasing' },
   { to: '/leasing-anlage', label: 'Leasing + Anlage' },

@@ -238,3 +238,49 @@ body {
 .module-intro strong {
   color: var(--color-text);
 }
+
+/* Vergleich module */
+.best-badge {
+  display: inline-block;
+  background: #198754;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cost-best {
+  color: #198754;
+  font-weight: 700;
+}
+
+.cost-normal {
+  color: var(--color-text);
+}
+
+.result-box-best {
+  border: 2px solid #198754;
+  background: #f0faf5;
+}
+
+.inline-link {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.inline-link:hover {
+  text-decoration: underline;
+}
+
+.cost-diff {
+  color: #dc3545;
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+}

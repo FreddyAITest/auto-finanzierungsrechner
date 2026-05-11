@@ -5,6 +5,7 @@ import BarkaufModule from '@/modules/barkauf'
 import LeasingModule from '@/modules/leasing'
 import LeasingAnlageModule from '@/modules/leasing-anlage'
 import GebrauchtwagenModule from '@/modules/gebrauchtwagen'
+import VergleichModule from '@/modules/vergleich'
 
 export default function App() {
   return (
@@ -12,11 +13,12 @@ export default function App() {
       <CalculatorProvider>
         <Routes>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<Navigate to="/barkauf" replace />} />
+            <Route path="/" element={<Navigate to="/vergleich" replace />} />
             <Route path="/barkauf" element={<BarkaufModule />} />
             <Route path="/leasing" element={<LeasingModule />} />
             <Route path="/leasing-anlage" element={<LeasingAnlageModule />} />
             <Route path="/gebrauchtwagen" element={<GebrauchtwagenModule />} />
+            <Route path="/vergleich" element={<VergleichModule />} />
           </Route>
         </Routes>
       </CalculatorProvider>

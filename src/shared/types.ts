@@ -60,3 +60,20 @@ export interface GebrauchtwagenResult {
   totalDepreciation: number
   finalValue: number
 }
+
+export interface VergleichOption {
+  label: string
+  route: string
+  totalCost: number
+  periodMonths: number
+  monthlyCost: number
+  annualCost: number
+  keyDetail: string
+  assetValue: number
+}
+
+export interface VergleichResult {
+  options: VergleichOption[]
+  bestOption: string
+  bestAnnualCost: number
+}
