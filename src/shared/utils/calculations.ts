@@ -49,7 +49,7 @@ export function compoundGrowthSchedule(
   let value = initialAmount
   for (let y = 1; y <= years; y++) {
     value = value * (1 + annualRatePercent / 100)
-    schedule.push({ year, value })
+    schedule.push({ year: y, value })
   }
   return schedule
 }
